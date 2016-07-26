@@ -1,5 +1,5 @@
 /*!
- * jQuery mFadeIn v1.0
+ * jQuery mFadeIn v1.1
  * Copyright 2016 maam.inc
  * Contributing Author: Hiroki Homma
  * Require for jQuery v1.7 or above
@@ -9,6 +9,7 @@
     var default_options = {
           duration: 260,
           time_window: 24,
+          direction: 'right'
         },
 
         params = $.extend({}, default_options, options),
@@ -21,7 +22,8 @@
         height = $img.height();
 
     var draw = function(progress) {
-      var grad = ctx.createLinearGradient(0, 0, width, width),
+      var grad,
+          large,
           wid = params.time_window / 100,
           start = progress * (1 + wid) / 100 - wid,
           end = start + wid;
@@ -29,10 +31,42 @@
       if(start < 0) start = 0;
       if(end > 1) end = 1;
 
+      if(width > height) {
+        large = width;
+      } else {
+        large = height;
+      }
 
 
       ctx.restore();
       ctx.save();
+
+      switch(params.direction) {
+        case 'radialIn':
+          grad = ctx.createRadialGradient(width / 2, height / 2, large / 2, width / 2, height / 2, 0);
+          break;
+
+        case 'radialOut':
+          grad = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, large / 2);
+          break;
+
+        case 'top':
+          grad = ctx.createLinearGradient(0, large, 0, 0);
+          break;
+
+        case 'bottom':
+          grad = ctx.createLinearGradient(0, 0, 0, large);
+          break;
+
+        case 'left':
+          grad = ctx.createLinearGradient(large, 0, 0, large);
+          break;
+
+        case 'right':
+        default:
+          grad = ctx.createLinearGradient(0, 0, large, large);
+          break;
+      }
 
       ctx.clearRect(0, 0, width, height);
 
@@ -56,7 +90,7 @@
       $target.css({
         width: width,
         height: height,
-        overflow: 'hidden',
+        overflow: 'hidden'
       });
 
 
