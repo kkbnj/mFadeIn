@@ -1,5 +1,5 @@
 /*!
- * jQuery mFadeIn v1.2
+ * jQuery mFadeIn v1.1
  * Copyright 2016 maam.inc
  * Contributing Author: Hiroki Homma
  * Require for jQuery v1.7 or above
@@ -19,8 +19,8 @@
         $img = $('img', $target),
         $canvas = $('<canvas>'),
         ctx,
-        width = $img.width(),
-        height = $img.height();
+        width,
+        height;
 
     var draw = function(progress) {
       var grad,
@@ -91,8 +91,6 @@
       $target.css({
         display: 'block',
         opacity: 0,
-        width: width,
-        height: height,
         overflow: 'hidden'
       });
 
@@ -102,13 +100,9 @@
 
       img.onload = function() {
         var i;
-        width = $img.width();
-        height = $img.height();
 
-        $target.css({
-          width: width,
-          height: height
-        });
+        width = img.width;
+        height = img.height;
 
         ctx = $canvas[0].getContext('2d');
         $canvas[0].width = width;
