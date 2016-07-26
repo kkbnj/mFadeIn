@@ -1,5 +1,5 @@
 /*!
- * jQuery mFadeIn v1.1
+ * jQuery mFadeIn v1.2
  * Copyright 2016 maam.inc
  * Contributing Author: Hiroki Homma
  * Require for jQuery v1.7 or above
@@ -9,6 +9,7 @@
     var default_options = {
           duration: 260,
           time_window: 24,
+          delay: 0,
           direction: 'right'
         },
 
@@ -132,19 +133,21 @@
     }
 
     var init = function() {
-      if($canvas[0].getContext('2d')) {
-        canvas_set();
+      setTimeout(function() {
+        if($canvas[0].getContext('2d')) {
+          canvas_set();
 
-      } else {
-        $target.css({
-          display: 'none',
-          opacity: 1
-        });
+        } else {
+          $target.css({
+            display: 'none',
+            opacity: 1
+          });
 
-        $target.fadeIn({
-          duration: params.duration
-        });
-      }
+          $target.fadeIn({
+            duration: params.duration
+          });
+        }
+      }, params.delay);
     }
 
     init();
