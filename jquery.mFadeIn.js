@@ -38,16 +38,16 @@
 
       ctx.beginPath();
 
-      grad.addColorStop(start, 'rgba(255, 255, 255, 1)');
+      grad.addColorStop(start, 'rgba(255, 255, 255, 0)');
 
-      grad.addColorStop(end, 'rgba(255, 255, 255, 0)');
+      grad.addColorStop(end, 'rgba(255, 255, 255, 1)');
 
       ctx.fillStyle = grad;
 
       ctx.rect(0, 0, width, height);
       ctx.fill();
 
-      ctx.globalCompositeOperation = 'destination-in';
+      ctx.globalCompositeOperation = 'source-out';
 
       ctx.drawImage($img[0], 0, 0);
     }
