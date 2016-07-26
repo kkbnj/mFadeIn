@@ -52,7 +52,7 @@
       ctx.drawImage($img[0], 0, 0);
     }
 
-    var init = function() {
+    var canvas_set = function() {
       $target.css({
         width: width,
         height: height,
@@ -90,6 +90,17 @@
             }, params.duration / 100 * i);
           })(i);
         }
+      }
+    }
+
+    var init = function() {
+      if($canvas[0].getContext('2d')) {
+        canvas_set();
+
+      } else {
+        $target.fadeIn({
+          duration: params.duration
+        });
       }
     }
 
