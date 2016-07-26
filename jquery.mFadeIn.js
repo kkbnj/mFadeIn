@@ -88,11 +88,12 @@
 
     var canvas_set = function() {
       $target.css({
+        display: 'block',
+        opacity: 0,
         width: width,
         height: height,
         overflow: 'hidden'
       });
-
 
       var img = new Image();
 
@@ -114,6 +115,9 @@
 
         $img.after($canvas);
         $img.remove();
+        $target.css({
+          opacity: 1
+        });
 
         ctx.save();
 
@@ -132,6 +136,11 @@
         canvas_set();
 
       } else {
+        $target.css({
+          display: 'none',
+          opacity: 1
+        });
+
         $target.fadeIn({
           duration: params.duration
         });
