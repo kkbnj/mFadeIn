@@ -71,6 +71,10 @@
 
       ctx.clearRect(0, 0, width, height);
 
+      ctx.drawImage($img[0], 0, 0);
+
+      ctx.globalCompositeOperation = 'destination-out';
+
       ctx.beginPath();
 
       grad.addColorStop(start, 'rgba(255, 255, 255, 0)');
@@ -81,10 +85,6 @@
 
       ctx.rect(0, 0, width, height);
       ctx.fill();
-
-      ctx.globalCompositeOperation = 'source-out';
-
-      ctx.drawImage($img[0], 0, 0);
     }
 
     var canvas_set = function() {
