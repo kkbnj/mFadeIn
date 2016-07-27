@@ -1,5 +1,5 @@
 /*!
- * jQuery mFadeIn v1.1
+ * jQuery mFadeIn v1.2
  * Copyright 2016 maam.inc
  * Contributing Author: Hiroki Homma
  * Require for jQuery v1.7 or above
@@ -127,8 +127,11 @@
     }
 
     var init = function() {
+      var ua = navigator.userAgent.toLowerCase(),
+          ie = !(ua.indexOf('edge') > -1) && ((ua.indexOf('msie') != -1) && (ua.indexOf('opera') == -1)) || (ua.indexOf('trident/7') != -1);
+
       setTimeout(function() {
-        if($canvas[0].getContext('2d')) {
+        if(!ie && $canvas[0].getContext('2d')) {
           canvas_set();
 
         } else {
