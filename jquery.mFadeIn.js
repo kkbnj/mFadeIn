@@ -17,7 +17,7 @@
 
         $target = $(this),
         $img = $('img', $target),
-        $canvas = $('<canvas>'),
+        $canvas = $('<canvas>').css('width', '100%'),
         ctx,
         width,
         height;
